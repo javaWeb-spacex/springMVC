@@ -1,6 +1,5 @@
 package com.sbx.Controller;
 
-import com.sbx.Service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,5 +17,11 @@ public class HelloController {
     public  String index(){
         //返回视图名称
         return "index";
+    }
+
+    @RequestMapping("/target")
+    public  String toTarget(){
+        //返回视图名称
+        return "target";
     }
 }
