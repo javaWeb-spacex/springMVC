@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+<h1>首页</h1>
+<form th:action="@{/RequestBody}" enctype="text/plain" method="post">
+    <input type="text" name="username"><br>
+    <input type="password" name="password"><br>
+    <input type="submit" value="RequestBody"><br>
+</form>
+
+<form th:action="@{/RequestEntity}" enctype="text/plain" method="post">
+    <input type="text" name="username"><br>
+    <input type="password" name="password"><br>
+    <input type="submit" value="RequestEntity"><br>
+</form>
+<a th:href="@{/Response}" >ServerAPI的response来响应浏览器数据</a><br>
+<a th:href="@{/ResponseBody}" >@ResponseBody来响应浏览器数据</a><br>
+<a th:href="@{/ResponseUser}" >@ResponseBody来响应User对象</a><br>
+<div id="app">
+    <a @click="testAxios" th:href="@{/testAxios}">ajax</a>
+</div>
+<a th:href="@{/file}" >下载</a><br>
+<a th:href="@{/Interceptor}">拦截器</a><br>
+<a th:href="@{/ExceptionHandler}">异常处理</a><br>
+
+<script type="text/javascript" th:src="@{/static/js/vue.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/axios.min.js}"></script>
+<script type="text/javascript">
+    new Vue({
+        el:"#app",
+        methods:{
+            testAxios:function (event) {
+                axios({
+                    method: "post",
+                    url:event.target.href,
+                    params:{
+                        username:"张三",
+                        password:"123456"
+                    }
+                }).then(function (response) {
+                    alert(response.data);
+                })
+                event.preventDefault();
+            }
+        }
+    });
+</script>
+
+
+</body>
+</html>
